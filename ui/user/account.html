@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bulma.min.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/style.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/navbar.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/modal.css">
+
+    <!-- To import fonts -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <script defer src="../../static/js/v3.5.1-all.js"></script>
+
+    <style>
+        html {
+            background-color: #EDF0F5;
+        }   
+        .main-subcontent > .title {
+            font-size: x-large;
+            text-align: left;
+            padding: 20px;
+            margin: 0;
+            background-color: #F3F2F1;
+            /* border: 1px solid black; */
+            border-color: black;
+            border-style: solid;
+            /* border-width: 0 0 1px 0; */
+            border-width: 0;
+            box-shadow: 0 0 1px 0;
+        }
+        .subcontent-columns {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            /* align-items: center; */
+            width: 100%;
+            align-content: stretch;
+            /* justify-content: space-evenly; */
+        }
+        .item {
+            /* flex: 1 1 0; */
+            /* background-color: white; */
+            /* height: 200px; */
+            margin: 10px;
+            /* border-radius: 10px; */
+        }
+        .left-col {
+            flex: 5;
+            /* padding: 10px; */
+        }
+
+        /* Start General Info */
+        .general-info {
+            border-radius: 10px;
+            background-color: #313247;
+            color: white;
+            padding: 10px;
+        }
+        /* .general-info > .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        } */
+        /* .general-info > .header > span {
+            font-weight: 500;
+        } */
+        .general-info > .field > .label, .general-info > .field-body > .field > .label {
+            color: white;
+            font-weight: 200;
+            text-align: left;
+        }
+        /* End of General Info */
+
+        /* Start of Tax Info */
+        .right-col {
+            flex: 3;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+        }
+        .tax-info > .field > .label {
+            text-align: left;
+        }
+        .tax-info > .field > .control > .input {
+            background-color: #F3F2F1;
+        }
+        .tax-info > .field > .label, .tax-info > .field-body > .field > .label {
+            font-weight: 200;
+            text-align: left;
+        }
+        .tax-info > .note{
+            font-weight: 200;
+            font-size: 10px;
+        }
+        /* End of Tax Info */
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header > span {
+            font-weight: 500;
+        }
+
+        .guide-header {
+            text-align: left;
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .guide-content {
+            text-align: left;
+            font-weight: 200;
+            font-size: 13px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div>
+                <div class="header">
+                    <div class="title">Purpose Details</div>
+                </div>
+                <hr style="padding:0; margin:10px;">
+            </div>
+            <div class="body">
+                <div class="modal-title">Are you applying as what?</div>
+                <div id="modalOptions" class="select">
+                    <select >
+                        <option value="option1">Personal capacity as the tax payer</option>
+                        <option value="option2">As a representative of another</option>
+                    </select>
+                </div>
+            </div>
+            <div class="footer">
+                <input id="btnProceed" class="button is-info" onclick="goToNewTransactionPage()" value="Proceed">
+            </div>
+        </div>
+    
+    </div>
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-logo">
+            <a class="custom-navbar-brand" href="./index.html" target="_top">
+                <img id="navbar-logo" src="../../static/img/digitax text.png">
+                <!-- <p>DIGITAX</p> -->
+            </a>
+        </div>
+    </nav>
+
+    <nav class="sidebar">
+        <div class="sidebar-top">
+            <a href="./index.html" class="sidebar-item">
+                <i class="fa fa-home fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>Home</p>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa fa-address-card fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>About Us</p>
+            </a>
+            <!-- <i class="fa fa-lightbulb-o fa-2x fa-inverse" aria-hidden="true"></i> -->
+        </div>
+        <a href="#" class="sidebar-item">
+            <i class="fa fa-question-circle fa-2x fa-inverse" aria-hidden="true"></i>
+            <p>Help</p>
+        </a>
+    </nav>
+
+    <div class="main-content">
+        <nav class="home-navbar">
+            <div class="home-navbar-top">
+                <a href="./account.html">
+                    <div class="img-container">
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Account Details</p>
+                </a>
+                <a href="./transactions.html">
+                    <div class="img-container">
+                        <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Transactions</p>
+                </a>
+                <a>
+                    <div class="img-container">
+                        <i class="fa fa-receipt fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Tax Payment</p>
+                </a>
+                <a href="./payment-instructions.html">
+                    <div class="img-container">
+                        <i class="fa fa-chalkboard-teacher fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Payment Instructions</p>
+                </a>
+            </div>
+            <div class="home-navbar-bottom">
+                <input id="btnTransaction" class="button is-info" type="submit" value="New Transaction">
+            </div>
+        </nav>
+        <div class="main-subcontent">
+            <div class="title">
+                Account Details
+            </div>
+            <div class="subcontent-columns">
+                <div class="item left-col">
+                    <form id="form1" class="general-info" method="post">
+                        <div class="header">
+                            <span>General Info</span>
+                            <input class="button" type="submit" value="update info">
+                        </div>
+                        <hr style="padding:0; margin:10px;">
+                        <div class="field-body row">
+                            <div class="field">
+                                <label class="label">Given Name</label>
+                                <div class="control">
+                                <input name="given_name" class="input" type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Surname</label>
+                                <div class="control">
+                                <input name="surname" class="input" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-body row">
+                            <div class="field">
+                                <label class="label">Phone Number</label>
+                                <div class="control">
+                                <input name="phone_num" class="input" type="tel">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Birth Date</label>
+                                <div class="control">
+                                <input name="birth_date" class="input" type="date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">TIN (if existing holder)</label>
+                            <div class="control">
+                            <input name="tin" class="input" type="number">
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="guide-header">Navigation</div>
+                    <div class="guide-content">
+                        Digitax is an online software for BIR business registration and tax filing for self practicing professionals and tex professionals.
+
+                        <ol>
+                            <li>If you are applying for your own personal business, you may start your application by clicking the "New Transaction" button. It will lead you to the business registration application process.</li>
+                            <li>If you are applying for business registration as a representative, you have to accomplish the "Tax Professional Information" form (located at the right part of this page) first before proceeding to a transaction.</li>
+                            <li>The General information on this page contains your credentials in the Digitax platform, which will be mainly used for log-in and log-out purposes and is not related on your BIR application.</li>
+                        </ol>
+
+                    </div>
+                </div>
+                <form class="item right-col tax-info">
+                    <!-- <form class="tax-info" action="/api/user/register" method="post"> -->
+                    <div class="header">
+                        <span>Tax Professional Info</span>
+                        <input class="button" type="submit" value="update info">
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+                    <div class="note">Kindly accomplish this part if applying as a representative</div>
+                    <div class="field">
+                        <label class="label">Profession *</label>
+                        <div class="control">
+                        <input name="profession" class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">License No. *</label>
+                        <div class="control">
+                        <input name="license-no" class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Licensing Agency *</label>
+                        <div class="control">
+                        <input name="licensing-agency" class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Practice/Business Address *</label>
+                        <div class="control">
+                        <input name="address" class="input" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">RPT/TIN *</label>
+                        <div class="control">
+                        <input name="rpt-tin" class="input" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let server = 'https://stagingserver.digitaxph.com/api';
+    let form = document.querySelector('#form1');
+
+    function goToNewTransactionPage() {
+        window.location.href = "./transaction-new.html";
+    }
+
+    function updateInfoUI(data) {
+        console.log(data);
+        const zeroPad = (num, places) => String(num).padStart(places, '0');
+        let birth_date = data['birth_year'] + '-' + zeroPad(data['birth_month'], 2) + '-' + zeroPad(data['birth_day'], 2);
+
+        form.querySelector('input[name="given_name"]').value = data['given_name'];
+        form.querySelector('input[name="surname"]').value = data['surname'];
+        // let suffix = form.querySelector('input[name="suffix"]').value;
+        form.querySelector('input[name="phone_num"]').value = data['phone_num'];
+        form.querySelector('input[name="birth_date"]').value = birth_date;
+        form.querySelector('input[name="tin"]').value = data['tin'];        
+    }
+
+    function getInfoFromAPI() {
+        console.log('Retrieving info from API');
+
+        let token = localStorage.getItem('digitax_current_user_token');
+
+        fetch(server+'/user/register', {
+            mode: 'cors',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            method: 'GET'
+        }).then(function(response) {
+            return response.json();
+        }).then(function(result) {   
+            updateInfoUI(result['data']);
+        }).catch(function(e) {
+            console.log(e);
+        }); 
+
+    }
+
+    function updateInfo() {
+        let data = {};
+        let given_name = form.querySelector('input[name="given_name"]').value;
+        let surname = form.querySelector('input[name="surname"]').value;
+        // let suffix = form.querySelector('input[name="suffix"]').value;
+        let phone_num = form.querySelector('input[name="phone_num"]').value;
+        let birth_date = form.querySelector('input[name="birth_date"]').value;
+        let tin = form.querySelector('input[name="tin"]').value;
+
+        birth_date = new Date(birth_date);
+        console.log(birth_date);
+        let birth_month = birth_date.getMonth() + 1;
+        let birth_day = birth_date.getDate();
+        let birth_year = birth_date.getFullYear();
+
+        console.log(birth_month, birth_day, birth_year);
+
+        data['given_name'] = given_name;
+        data['surname'] = surname;
+        data['phone_num'] = phone_num;
+        data['birth_month'] = birth_month;
+        data['birth_day'] = birth_day;
+        data['birth_year'] = birth_year;
+        data['tin'] = tin;
+
+        let token = sessionStorage.getItem('digitax_current_user_token');
+
+        fetch(server+'/user/register', {
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+            },
+            method: 'PUT',
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            return response.json();
+        }).then(function(result) {   
+            // console.log(result);
+            location.reload();
+        }).catch(function(e) {
+            console.log(e);
+        }); 
+    }
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+        updateInfo();
+        return false;
+    };
+
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("btnTransaction");
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    getInfoFromAPI();
+
+</script>
+
+</html>

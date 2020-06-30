@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bulma.min.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/style.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/navbar.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/modal.css">
+
+    <!-- To import fonts -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <script defer src="../../static/js/v3.5.1-all.js"></script>
+
+    <style>
+        html {
+            background-color: #EDF0F5;
+        }   
+
+        .main-subcontent > .title {
+            font-size: x-large;
+            text-align: left;
+            padding: 20px;
+            margin: 0;
+            background-color: #F3F2F1;
+            /* border: 1px solid black; */
+            border-color: black;
+            border-style: solid;
+            /* border-width: 0 0 1px 0; */
+            border-width: 0;
+            box-shadow: 0 0 1px 0;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .title-main {
+            margin-right: 10px;
+            width: 250px;
+        }
+        .title-progress {
+            /* display: inline-block; */
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .title-tabs {
+            /* margin: 40px 5px 20px 5px; */
+            margin: 5px;
+            padding: 5px;
+            font-size: 15px;
+            background-color: white;
+            box-shadow: 0 0 1px 0;
+        }
+        .title-tabs.current {
+            background-color: steelblue;
+            color: white;
+        }
+
+        .subcontent-columns {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            /* align-items: center; */
+            width: 100%;
+            align-content: stretch;
+            /* justify-content: space-evenly; */
+        }
+        .item {
+            margin: 5px;
+        }
+        .left-col {
+            flex: 5;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .right-col {
+            flex: 2;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #313247;
+            color: white;
+        }
+        .right-col > .field > .label, .right-col > .field-body > .field > .label {
+            color: white;
+            font-weight: 200;
+            text-align: left;
+        }
+
+        .form {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .form > .field {
+            margin: 5px;
+            /* width: 200px; */
+        }
+        .form > .field > .label {
+            text-align: left;
+        }
+        .form > .field > .control > .input {
+            background-color: #F3F2F1;
+        }
+        .form > .field > .label, .form > .field-body > .field > .label {
+            font-weight: 200;
+            font-size: 12px;
+            text-align: left;
+        }
+        .form > .note{
+            font-weight: 200;
+            font-size: 10px;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header > span {
+            font-weight: 500;
+        }
+        .text-page {
+            font-size: 12px;
+        }
+
+        .guide-header {
+            text-align: left;
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .guide-content {
+            text-align: left;
+            font-weight: 200;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .right-col > .subcontent {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .ongoing-application {
+            flex: 3;
+            padding: 5px;
+            border-radius: 25px;
+            background-color: #EDCB3B;
+            font-size: 15px;
+            color: #313247;
+            font-weight: 500;
+        }
+        .percentage-done {
+            flex: 2;
+            margin-left: 20px;
+        }
+        .percentage-text {
+            font-size: 30px;
+            font-weight: 500;
+        }
+        .requirements-done-text {
+            font-size: 12px;
+        }
+
+        .progress-container {
+            width: 280px;
+            margin: 20px auto;
+        }
+        .progress-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 180px;
+        }
+        .progress-label > p {
+            display: inline;
+            font-size: 12px;
+        }
+        .progress-svg {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .progress-color {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 180px;
+        }
+        .progress-complete:after {
+            content: "COMPLETED";
+            background-color: #3CCE6C;
+            color: white;
+            font-size: 12px;
+            border-radius: 25px;
+            padding: 5px 15px;
+        }
+        .progress-incomplete:after {
+            content: "INCOMPLETE";
+            background-color: #F25F5F;
+            color: white;
+            font-size: 12px;
+            border-radius: 25px;
+            padding: 5px 15px;
+        }
+
+        .approval-status-no, .approval-status-yes {
+            margin-top: 20px;
+        }
+        .approval-status-no:after {
+            content: "NOT YET SUBMITTED";
+            background-color: white;
+            color: #313247;
+            font-size: 18px;
+            border-radius: 25px;
+            padding: 5px 15px;
+        }
+        .approval-status-yes:after {
+            content: "SUBMITTED";
+            background-color: #3CCE6C;
+            color: white;
+            font-size: 18px;
+            border-radius: 25px;
+            padding: 5px 15px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-logo">
+            <a class="custom-navbar-brand" href="./index.html" target="_top">
+                <img id="navbar-logo" src="../../static/img/digitax text.png">
+                <!-- <p>DIGITAX</p> -->
+            </a>
+        </div>
+    </nav>
+
+    <nav class="sidebar">
+        <div class="sidebar-top">
+            <a href="./index.html" class="sidebar-item">
+                <i class="fa fa-home fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>Home</p>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa fa-address-card fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>About Us</p>
+            </a>
+            <!-- <i class="fa fa-lightbulb-o fa-2x fa-inverse" aria-hidden="true"></i> -->
+        </div>
+        <a href="#" class="sidebar-item">
+            <i class="fa fa-question-circle fa-2x fa-inverse" aria-hidden="true"></i>
+            <p>Help</p>
+        </a>
+    </nav>
+
+    <div class="main-content">
+        <nav class="home-navbar">
+            <div class="home-navbar-top">
+                <a href="./account.html">
+                    <div class="img-container">
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Account Details</p>
+                </a>
+                <a href="./transactions.html">
+                    <div class="img-container">
+                        <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Transactions</p>
+                </a>
+                <a>
+                    <div class="img-container">
+                        <i class="fa fa-receipt fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Tax Payment</p>
+                </a>
+                <a href="./payment-instructions.html">
+                    <div class="img-container">
+                        <i class="fa fa-chalkboard-teacher fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Payment Instructions</p>
+                </a>
+            </div>
+            <div class="home-navbar-bottom">
+                <input id="btnTransaction" class="button is-info" type="submit" value="New Transaction">
+            </div>
+        </nav>
+        <div class="main-subcontent">
+            <div class="title">
+                <span class="title-main">Registration Process</span>
+                <div class="title-progress">
+                    <span class="title-tabs">Applicant Information</span>
+                    <span class="title-tabs">Business Information</span>
+                    <span class="title-tabs current">Authority to Print</span>
+                    <span class="title-tabs">Upload Documents</span>
+                    <span class="title-tabs">Summary</span>
+                </div>
+
+            </div>
+            <div class="subcontent-columns">
+                <div class="item left-col">
+                    <div class="header">
+                        <span>Digitax Invoice System</span>
+                        <span class="text-page">Page 1 of 2</span>
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+                    <form class="form">
+                        <div class="field">
+                            <label class="label">Do you want to use the Digitax Invoice System? *</label>
+                            <div class="control">
+                            <input name="use_digitax_invoice" class="input" type="text">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="header">
+                        <span>Printer Details</span>
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+                    <form class="form">
+                        <div class="field">
+                            <label class="label">Printer's Name *</label>
+                            <div class="control">
+                            <input name="name" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Printer's TIN *</label>
+                            <div class="control">
+                            <input name="tin" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Printer's Accreditation Number *</label>
+                            <div class="control">
+                            <input name="accr_num" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Country *</label>
+                            <div class="control">
+                            <input name="country" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Region *</label>
+                            <div class="control">
+                            <input name="region" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Province *</label>
+                            <div class="control">
+                            <input name="province" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">City *</label>
+                            <div class="control">
+                            <input name="city" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Barangay *</label>
+                            <div class="control">
+                            <input name="barangay" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Street/Building/Unit *</label>
+                            <div class="control">
+                            <input name="street_blg_unit" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Facility Type *</label>
+                            <div class="control">
+                            <input name="facility_type" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Accreditation Date *</label>
+                            <div class="control">
+                            <input name="accr_date" class="input" type="date">
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr style="padding:0; margin:10px;">
+
+                    <div class="guide-header">Instructions</div>
+                    <div class="guide-content">
+                        <ol>
+                            <li>Put N/A if not applicable</li>
+                            <li>* are required fields</li>
+                        </ol>
+                    </div>
+                    <input id="btnProceed" class="button is-info" type="submit" onclick="updateInfo()" value="Proceed">
+                </div>
+                <div class="item right-col">
+                    <!-- <form class="tax-info" action="/api/user/register" method="post"> -->
+                    <div class="header">
+                        <span>Current Status</span>
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+                    <div class="subcontent">
+                        <div class="ongoing-application item">
+                            ON-GOING APPLICATION
+                        </div>
+                        <div class="percentage-done item">
+                            <div class="percentage-text">40%</div>
+                            <div class="requirements-done-text">REQUIREMENTS DONE</div>
+                        </div>
+                    </div>
+                    <div class="header">
+                        <span>Progress</span>
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+
+                    <div class="subcontent progress-container">
+                        <div class="progress-label">
+                            <p>Applicant Information</p>
+                            <p>Business Information</p>
+                            <p>Upload Documents</p>
+                            <p>Authority to Print</p>
+                            <p>Payment</p>
+                        </div>
+                        <svg class="progress-svg" height="170" width="10">
+                            <g>
+                                <line x1="5" y1="5" x2="5" y2="160" style="stroke:rgb(255,255,255);stroke-width:2" />
+                                <circle cx="5" cy="5" r="5" stroke-width="0" fill="white" />
+                                <circle cx="5" cy="45" r="5" stroke-width="0" fill="white" />
+                                <circle cx="5" cy="85" r="5" stroke-width="0" fill="white" />
+                                <circle cx="5" cy="125" r="5" stroke-width="0" fill="white" />
+                                <circle cx="5" cy="165" r="5" stroke-width="0" fill="white" />
+                            </g>
+                        </svg>
+                        <div class="progress-color">
+                            <div id="progress1" class="progress-complete"></div>
+                            <div id="progress2" class="progress-complete"></div>
+                            <div id="progress3" class="progress-incomplete"></div>
+                            <div id="progress4" class="progress-incomplete"></div>
+                            <div id="progress5" class="progress-incomplete"></div>
+                        </div>
+                    </div>
+
+                    <div class="header">
+                        <span>Approval Status</span>
+                    </div>
+                    <hr style="padding:0; margin:10px;">
+                    <div class="approval-status-no"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function goToNextPage() {
+        window.location.href = "./reg-print2.html";
+    }
+
+    function updateInfo() {
+        let data = {};
+        
+        let fields1 = ["use_digitax_invoice", "name", "tin", "accr_num", 
+            "country", "region", "province", "city", "barangay", 
+            "street_blg_unit", "facility_type", "accr_date"];
+        fields1.forEach((field) => {
+            data[field] = document.querySelector('input[name="'+field+'"]').value;
+        });
+
+        localStorage.setItem('digitax_auth_to_print1', JSON.stringify(data));
+        goToNextPage();
+    }
+
+</script>
+
+</html>

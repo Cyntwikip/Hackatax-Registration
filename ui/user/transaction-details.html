@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bulma.min.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/style.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/navbar.css">
+
+    <!-- To import fonts -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
+    <script defer src="../../static/js/v3.5.1-all.js"></script>
+
+    <style>
+        html {
+            background-color: #EDF0F5;
+        }   
+        .main-subcontent {
+            /* height: 100%; */
+        }
+        .main-subcontent > .title {
+            font-size: x-large;
+            text-align: left;
+            padding: 20px;
+            margin: 0;
+            background-color: #F3F2F1;
+            /* border: 1px solid black; */
+            border-color: black;
+            border-style: solid;
+            /* border-width: 0 0 1px 0; */
+            border-width: 0;
+            box-shadow: 0 0 1px 0;
+        }
+        .subcontent-rows {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+            width: 100%;
+            /* height: 100%; */
+            /* align-content: stretch; */
+            /* justify-content: space-evenly; */
+            /* justify-content: center; */
+        }
+        .item {
+            height: 250px;
+            margin: 5px;
+            display: flex;
+            flex-direction: row;
+            /* flex: 1; */
+            /* padding: 10px;
+            border-radius: 10px;
+            background-color: white; */
+        }
+
+        .income-source-options {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        .income-source-options > a {
+            background-color: #F3F2F1;
+            /* display: block; */
+            width: 120px;
+            height: auto;
+            /* margin: 20px auto; */
+            margin: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .income-source-options > a:hover, .income-source-options > a.clicked {
+            background-color: rgb(45, 138, 167);
+            color: white;
+        }
+        .income-source-options > a > img {
+            width: 80px;
+        }
+        .income-source-options > a > span {
+            display: block;
+            font-size: 12px;
+        }
+        /* .income-source-options > span.clicked {
+            color: white;
+        } */
+
+        .sub-item {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        #income-source {
+            flex: 2;
+        }
+        #nationality {
+            flex: 1;
+        }
+        #tin-info {
+            flex: 1;
+        }
+        #application-notice {
+            flex: 1;
+        }
+
+        .subtext {
+            font-size: 12px;
+            text-align: left;
+            margin: 5px;
+        }
+        .select, select {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-logo">
+            <a class="custom-navbar-brand" href="./index.html" target="_top">
+                <img id="navbar-logo" src="../../static/img/digitax text.png">
+                <!-- <p>DIGITAX</p> -->
+            </a>
+        </div>
+    </nav>
+
+    <nav class="sidebar">
+        <div class="sidebar-top">
+            <a href="./index.html" class="sidebar-item">
+                <i class="fa fa-home fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>Home</p>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fa fa-address-card fa-2x fa-inverse" aria-hidden="true"></i>
+                <p>About Us</p>
+            </a>
+            <!-- <i class="fa fa-lightbulb-o fa-2x fa-inverse" aria-hidden="true"></i> -->
+        </div>
+        <a href="#" class="sidebar-item">
+            <i class="fa fa-question-circle fa-2x fa-inverse" aria-hidden="true"></i>
+            <p>Help</p>
+        </a>
+    </nav>
+
+    <div class="main-content">
+        <nav class="home-navbar">
+            <div class="home-navbar-top">
+                <a href="./account.html">
+                    <div class="img-container">
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Account Details</p>
+                </a>
+                <a href="./transactions.html">
+                    <div class="img-container">
+                        <i class="fa fa-credit-card fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Transactions</p>
+                </a>
+                <a>
+                    <div class="img-container">
+                        <i class="fa fa-receipt fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Tax Payment</p>
+                </a>
+                <a href="./payment-instructions.html">
+                    <div class="img-container">
+                        <i class="fa fa-chalkboard-teacher fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <p>Payment Instructions</p>
+                </a>
+            </div>
+            <div class="home-navbar-bottom">
+                <input id="btnTransaction" class="button is-info" type="submit" value="New Transaction">
+            </div>
+        </nav>
+        <div class="main-subcontent">
+            <div class="title">
+                Preliminary Details
+            </div>
+            <div class="subcontent-rows">
+                <div class="item">
+                    <div id="income-source" class="sub-item">
+                        <div class="header">
+                            Income Source
+                        </div>
+                        <hr style="padding:0; margin:10px;">
+                        <div class="income-source-options">
+                            <a id="income-source1">
+                                <img src="../../static/img/Applicant Type - Employed.svg">
+                                <span>Self Employed</span>
+                            </a>
+                            <a id="income-source2">
+                                <img src="../../static/img/Applicant Type - Self Practicing.svg">
+                                <span>Self Practicing Professional</span>
+                            </a>
+                            <a id="income-source3">
+                                <img src="../../static/img/Applicant Type - Business Man.svg">
+                                <span>Sole Proprietor</span>
+                            </a>
+                        </div>
+                        <!-- <input id="btnBusiness" class="button is-info" type="submit" value="Start"> -->
+                    </div>
+                    <div id="nationality" class="sub-item">
+                        <div class="header">
+                            Nationality
+                        </div>
+                        <hr style="padding:0; margin:10px;">
+                        <div class="subtext">Choose your nationality</div>
+                        <div class="select">
+                            <select>
+                                <option value="option1">Filipino</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div id="tin-info" class="sub-item">
+                        <div class="header">
+                            TIN Information
+                        </div>
+                        <hr style="padding:0; margin:10px;">
+                        <div class="subtext">With Existing TIN?</div>
+                        <input name="existingTin" class="input" type="text">
+                        <div class="subtext">TIN (if existing holder)</div>
+                        <input name="existingHolder" class="input" type="text">
+                    </div>
+                    <div id="application-notice" class="sub-item">
+                        <div class="header">
+                            Application Notice
+                        </div>
+                        <hr style="padding:0; margin:10px;">
+                        <div class="subtext">By clicking proceed, you are officially starting your application with BIR. Please ensure that all the inofrmation you enter are true.</div>
+                        <input id="btnProceed" class="button is-info" type="submit" onclick="goToRegisterApplicantInfoPage()" value="Proceed">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let id1 = document.querySelector('#income-source1');
+    let id2 = document.querySelector('#income-source2');
+    let id3 = document.querySelector('#income-source3');
+    let clickedId = null;
+
+    function toggleIncomeSource(toggleId) {
+        id1.classList.remove('clicked');
+        id2.classList.remove('clicked');
+        id3.classList.remove('clicked');
+
+        toggleId.classList.add('clicked');
+        clickedId = toggleId;
+    }
+
+    id1.onclick = () => toggleIncomeSource(id1);
+    id2.onclick = () => toggleIncomeSource(id2);
+    id3.onclick = () => toggleIncomeSource(id3);
+
+    let server = 'https://stagingserver.digitaxph.com/api';
+
+    function goToRegisterApplicantInfoPage() {
+        window.location.href = "./reg-applicant-info.html";
+    }
+
+
+</script>
+
+</html>

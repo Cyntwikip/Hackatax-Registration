@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bulma.min.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/style.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/navbar.css">
+
+    <!-- To import fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <style>
+        #main-logo {
+            margin-top: 20px;
+            height: 300px;
+            width: auto;
+        }
+        #bir-logo {
+            margin-top: 10px;
+            height: 80px;
+            width: auto;
+        }
+        button {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        #text-1 {
+            /* font-weight: bold; */
+            font-size: 40px;
+        }
+        .left-col {
+            width: 450px;
+        }
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 450px;
+        }
+        .right-col-item {
+            background-color: #F0F0F0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        #about-us {
+            text-align: justify;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a id="navbar-logo" class="navbar-item" href="#">
+            <img  src="../../static/img/bir_logo.png">
+            <p class="navbar-item">DIGITAX</p>
+
+            </a>
+        </div>
+        
+        <div class="navbar-menu">
+            <div class="navbar-end">    
+                <a class="navbar-item" href="#" target="_top">Tutorial</a>
+                <a class="navbar-item" href="#" target="_top">About Us</a>
+            </div>
+        </div>
+    </nav> -->
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-logo">
+            <a class="custom-navbar-brand" href="./index.html" target="_top">
+                <img id="navbar-logo" src="../../static/img/digitax text.png">
+                <!-- <p>DIGITAX</p> -->
+            </a>
+            
+        </div>
+
+        <div class="custom-navbar-links">
+            <a class="navbar-item" href="#" target="_top">Tutorial</a>
+            <a class="navbar-item" href="#" target="_top">About Us</a>
+        </div>
+    </nav>
+
+    <div class="container main">
+        <div class="left-col">
+            <img id="main-logo" src='../../static/img/Digitax Logo.png'>
+            <div id="text-1">Welcome to DIGITAX</div>
+            <div id="text-2">One stop shop for your tax needs.</div>
+
+            <!-- <button id="btn" class="button is-info is-medium">START</button> -->
+            <br>
+            <br>
+            <div id="text-3">Accredited by the Bureau of Internal Revenue</div>
+            <img id="bir-logo" src='../../static/img/bir_logo.png'>
+        </div>
+        <div class="right-col">
+            <!-- <form class="right-col-item" action="/api/user/login" method="post"> -->
+            <form id="form1" class="right-col-item" method="post">
+                <div class="field">
+                    <!-- <label class="label">Username</label> -->
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="username" class="input is-success" type="text" placeholder="Username" value="">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                        <!-- <i class="fas fa-check"></i> -->
+                        <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                    </div>
+                    <!-- <p class="help is-success">This username is available</p> -->
+                    <!-- <p class="help is-danger">This username is not available</p> -->
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input name="password" class="input" type="password" placeholder="Password">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="container repel">
+                    <!-- <p class="control"> -->
+                    <input class="button is-info" type="submit" value="Login">
+                    <!-- </p> -->
+                    <div>
+                        <span>No account yet?</span>
+                        <a href="./register.html">Register</a>
+                    </div>
+
+                </div>                
+            </form>
+            <div id="about-us" class="right-col-item">
+                <h3><strong>Digitax:</strong></h3>
+                <p>Digitax is an online software for BIR business registration and tax filing for self practicing professionals and tax professionals.</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    function goToAccountPage() {
+        window.location.href = "./account.html";
+    }
+
+    function login() {
+        // let data = {};
+        let form = document.querySelector('#form1');
+        let username = form.querySelector('input[name="username"]').value;
+        let password = form.querySelector('input[name="password"]').value;
+
+        let server = 'https://stagingserver.digitaxph.com/api'
+
+        fetch(server+'/user/login', {
+            mode: 'cors',
+            headers: {
+                // 'Accept': 'application/json, text/plain, */*',
+                // 'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + btoa(username + ":" + password),
+            },
+            method: 'GET'
+        }).then(function(response) {
+            console.log(response);
+            return response.json();
+        }).then(function(result) {   
+            let token = result['access_token'];
+            console.log(token);
+            localStorage.setItem('digitax_current_user_token', token);
+            // console.log('Login successful! Token stored.');
+            goToAccountPage();
+        }).catch(function(e) {
+            console.log(e);
+        }); 
+    }   
+
+    let form = document.querySelector('#form1');
+    form.onsubmit = function(event) {
+        event.preventDefault();
+        login();
+        return false;
+    };
+</script>
+
+</html>

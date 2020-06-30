@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'> 
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/bulma.min.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/style.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/navbar.css">
+    <link rel='stylesheet' type="text/css" href="../../static/css/modal.css">
+
+    <!-- To import fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <style>
+        #bir-logo {
+            margin-top: 10px;
+            height: 80px;
+            width: auto;
+        }
+        button {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        #text-1 {
+            /* font-weight: bold; */
+            font-size: 40px;
+        }
+        .left-col {
+            width: 450px;
+        }
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 550px;
+        }
+        .right-col-item {
+            background-color: #F0F0F0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }        
+    </style>
+</head>
+
+<body>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div>
+                <div class="header">
+                    <div class="title">Notification</div>
+                </div>
+                <hr style="padding:0; margin:10px;">
+            </div>
+            <div class="body">
+                <div class="modal-title">Congratulations!</div>
+                <div class="modal-title">Registration Successful!</div>
+            </div>
+            <div class="footer">
+                <input id="btnProceed" class="button is-info" onclick="goToLoginPage()" value="Login Page">
+            </div>
+        </div>
+    
+    </div>
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-logo">
+            <a class="custom-navbar-brand" href="./index.html" target="_top">
+                <img id="navbar-logo" src="../../static/img/digitax text.png">
+                <!-- <p>DIGITAX</p> -->
+            </a>
+        </div>
+    </nav>
+
+    <div class="container main">
+        <div class="left-col">
+            <div id="text-1">DIGITAX Account Registration</div>
+            <br>
+            <div id="text-2">The Digitax account registration is a separate registration by the Digitax software to be used as your log-in credentials so that all your transactions through the software is stored. Official BIR applications will be using BIR forms inside this software.</div>
+
+            <!-- <button id="btn" class="button is-info is-medium">START</button> -->
+            <br>
+            <br>
+            <div id="text-3">Accredited by the Bureau of Internal Revenue</div>
+            <img id="bir-logo" src='../../static/img/bir_logo.png'>
+        </div>
+        <div class="right-col">
+            <!-- <form class="right-col-item" action="/api/user/register" method="post"> -->
+            <form id="form1" class="right-col-item" method="post" autocomplete="off">
+
+                <div class="field-body row">
+                    <div class="field">
+                        <label class="label">Given Name</label>
+                        <div class="control">
+                        <input name="given_name" class="input" type="text" placeholder="Given Name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Surname</label>
+                        <div class="control">
+                        <input name="surname" class="input" type="text" placeholder="Surname">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-body row">
+                    <div class="field">
+                        <label class="label">Middle Name</label>
+                        <div class="control">
+                        <input name="middle_name" class="input" type="text" placeholder="Middle Name" value="">
+                        </div>
+                    </div>
+                    <!-- <div class="field"> -->
+                        <div class="field-body">
+                            <div class="field">
+                                <label class="label">Suffix</label>
+                                <div class="control">
+                                <input name="suffix" class="input" type="text" placeholder="Suffix" value="">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Birthdate</label>
+                                <div class="control">
+                                <input name="birth_date" class="input" type="date" placeholder="Birth date">
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+
+                <div class="field-body row">
+                    <div class="field">
+                        <label class="label">Phone Number</label>
+                        <div class="control">
+                        <input name="phone_num" class="input" type="tel" placeholder="Phone Number">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                        <input name="email_ad" class="input" type="email" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-body row">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input name="username" class="input is-success" type="text" placeholder="Username">
+                            <!-- <p class="help is-success">This username is available</p> -->
+                            <!-- <p class="help is-danger">This username is not available</p> -->
+                        </div>
+                    </div>
+                    <div class="field">
+                        
+                    </div>
+                </div>
+
+                <div class="field-body row">
+                    <div class="field">
+                        <label class="label">Create Password</label>
+                        <div class="control">
+                            <input name="password1" class="input" type="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Confirm Password</label>
+                        <div class="control">
+                            <input name="password2" class="input" type="password" placeholder="Confirm Password">
+                            <p id="password2-error" class="help is-danger hidden">Passwords do not match</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="field is-grouped is-grouped-multiline">
+                    <div class="control has-icons-left">
+                        <input name="password1" class="input" type="password" placeholder="Password">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                        </span>
+                    </div>
+                    <div class="control has-icons-left">
+                        <input name="password2" class="input" type="password" placeholder="Confirm Password">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                        </span>
+                    </div>
+                </div> -->
+                <input class="button is-info" type="submit" value="Register">
+                <!-- <input class="button is-info" value="Register" onclick="register()"> -->
+            </form>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function checkPassword() {
+        let error = document.querySelector('#password2-error');
+
+        if (password1.value != password2.value) {
+            error.classList.remove('hidden');
+            error.classList.add('visible');
+        }
+        else {
+            error.classList.remove('visible');
+            error.classList.add('hidden');
+        }
+    }
+
+    function goToLoginPage() {
+        window.location.href = "./index.html";
+    }
+
+    function regNotification() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    let server = 'https://stagingserver.digitaxph.com/api';
+    
+    let headers = {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                // 'Authorization': 'Bearer ' + token,
+        };
+
+    function register() {
+        console.log('Submit');
+        // alert('hi!');
+        let data = {};
+        let form = document.querySelector('#form1');
+        let given_name = form.querySelector('input[name="given_name"]').value;
+        let surname = form.querySelector('input[name="surname"]').value;
+        let middle_name = form.querySelector('input[name="middle_name"]').value;
+        let suffix = form.querySelector('input[name="suffix"]').value;
+        let phone_num = form.querySelector('input[name="phone_num"]').value;
+        let birth_date = form.querySelector('input[name="birth_date"]').value;
+        let email_ad = form.querySelector('input[name="email_ad"]').value;
+        let username = form.querySelector('input[name="username"]').value;
+        let password1 = form.querySelector('input[name="password1"]').value;
+        let password2 = form.querySelector('input[name="password2"]').value;
+
+        if (password1 != password2) {
+            return;
+        }
+
+        birth_date = new Date(birth_date);
+        let birth_month = birth_date.getMonth() + 1;
+        let birth_day = birth_date.getDate();
+        let birth_year = birth_date.getFullYear();
+
+        data['given_name'] = given_name;
+        data['surname'] = surname;
+        // data['middle_name'] = middle_name;
+        // data['suffix'] = suffix;
+        data['phone_num'] = phone_num;
+        data['birth_month'] = birth_month;
+        data['birth_day'] = birth_day;
+        data['birth_year'] = birth_year;
+        data['email_ad'] = email_ad;
+        data['username'] = username;
+        data['password'] = password1;
+
+        console.log(data);
+
+        fetch(server+'/bir_user/register', {
+            mode: 'cors',
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            console.log(response);
+            return response.json();
+        }).then(function(result) {   
+            // alert('Registration Successful!') 
+            console.log(result);
+            regNotification();
+        }).catch(function(e) {
+            console.log(e);
+        }); 
+
+    }
+
+    let form = document.querySelector('#form1');
+    let password1 = form.querySelector('input[name="password1"]');
+    let password2 = form.querySelector('input[name="password2"]');
+
+    password1.onkeyup = () => checkPassword();
+    password2.onkeyup = () => checkPassword();
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+        register();
+        return false;
+    };
+    
+    console.log('Welcome!')
+    
+</script>
+
+</html>
